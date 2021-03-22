@@ -1,0 +1,21 @@
+body {
+   padding: 10px;
+   background-color: #fff;
+   color: gray;
+}
+
+.center {
+    display: block;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+}
+
+button {
+    width: 80%;
+    padding: 4px;
+    margin-top: 4px;
+    margin-bottom: 4 px;
+    background-color: aquamarine;
+    border-radius: 4px;
+}
