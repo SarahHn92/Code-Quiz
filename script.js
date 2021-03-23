@@ -19,7 +19,7 @@ var questions = [
     {
         question: "Arrays in JavaScript can contain:",
         choices: ["Strings", "Numbers", "Booleans", "All of the above"],
-        answer: "All of the Above"
+        answer: "All of the above"
     },
     {
         question: "The condition of an if/else statement is encolsed in:",
@@ -31,13 +31,16 @@ var questions = [
 var currentQuestion = 0;
 var q =  questions[currentQuestion];
 var secondsLeft = 50;
+var finishedQuestions = currentQuestion >= 4;
+
 
 function startGame() {
     handleTimer();
     //ask first question
     nextQuestion();
 }
-    
+ if (nextQuestion >= 4) {
+        endGame;   
 //increment through array to next question
 
 function nextQuestion() {
@@ -78,14 +81,18 @@ function checkAnswer(e) {
         nextQuestion();
     } else {
         // answer is wrong
+        currentQuestion++;
+        q = questions[currentQuestion];
         document.getElementById("correct").style.visibility = "hidden";
         document.getElementById("incorrect").style.visibility ="visible";
         secondsLeft = secondsLeft -10;
+        nextQuestion();
     }
 }
 
 function endGame() {
     console.log ("Time is up");
+    var submit = prompt("Enter your initials to save your score!")
 }
 
 document.getElementById("button1").addEventListener("click", checkAnswer);
@@ -93,3 +100,4 @@ document.getElementById("button2").addEventListener("click", checkAnswer);
 document.getElementById("button3").addEventListener("click", checkAnswer);
 document.getElementById("button4").addEventListener("click", checkAnswer);
 document.getElementById("startTime").addEventListener("click", startGame);
+document.getElementById("corre")
