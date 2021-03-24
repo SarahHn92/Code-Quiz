@@ -39,16 +39,23 @@ function startGame() {
     //ask first question
     nextQuestion();
 }
- if (nextQuestion >= 4) {
-        endGame;   
+  
 //increment through array to next question
 
 function nextQuestion() {
-    document.getElementById("question").innerHTML = q.question;
-    document.getElementById("button1").innerHTML = q.choices[0];
-    document.getElementById("button2").innerHTML = q.choices[1];
-    document.getElementById("button3").innerHTML = q.choices[2];
-    document.getElementById("button4").innerHTML = q.choices[3];
+    if (q) {
+        document.getElementById("question").innerHTML = q.question;
+        document.getElementById("button1").innerHTML = q.choices[0];
+        document.getElementById("button2").innerHTML = q.choices[1];
+        document.getElementById("button3").innerHTML = q.choices[2];
+        document.getElementById("button4").innerHTML = q.choices[3];  
+    } else { 
+        endGame();
+    }
+
+    
+
+    
 //compare user choice to answer
 //Depending on answer, show "Correct", and "incorrect"
 }
@@ -64,7 +71,10 @@ function handleTimer() {
             clearInterval(timer)
             document.getElementById("timer").innerHTML = "Timer: 0";
             endGame();
-        }
+        } 
+        // if (nextQuestion === undefined) {
+        //     timer.pause();
+        //}
     }, 1000)  
 }  
 
@@ -87,17 +97,36 @@ function checkAnswer(e) {
         document.getElementById("incorrect").style.visibility ="visible";
         secondsLeft = secondsLeft -10;
         nextQuestion();
+        // nextQuestion();
     }
+    
 }
 
 function endGame() {
-    console.log ("Time is up");
-    var submit = prompt("Enter your initials to save your score!")
+    console.log ("Game over");
+    var submit = prompt("Enter your initials to save your score!");
+    console.log(submit);
+    var userScore = {
+        initials: submit,
+        score:secondsLeft
+    } 
+    var highScores = [];
+    highScores.push(userScore);
+    console.log(highScores);
+    
+    //stop timer
+    //store highScores to local storage
+
 }
+
+//new html page for high score page
+// get highScores from local storage
+//reset game
 
 document.getElementById("button1").addEventListener("click", checkAnswer);
 document.getElementById("button2").addEventListener("click", checkAnswer);
 document.getElementById("button3").addEventListener("click", checkAnswer);
 document.getElementById("button4").addEventListener("click", checkAnswer);
 document.getElementById("startTime").addEventListener("click", startGame);
-document.getElementById("corre")
+document.getElementById("correct").style.visibility = "hidden";
+document.getElementById("incorrect").style.visibility = "hidden";
