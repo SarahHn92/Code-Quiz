@@ -97,7 +97,10 @@ function checkAnswer(e) {
     }
 }
 
-var highScores = [];
+
+
+// function storeScore();
+
 
 function endGame() {
     handleTimer(clearInterval());
@@ -108,16 +111,22 @@ function endGame() {
         initials: submit,
         score:secondsLeft
     } 
+    var highScores = [];
     highScores.push(userScore);
     console.log(highScores);
-    var storeScore = localStorage.setItem("highScores", JSON.stringify(highScores));
+
+
+    // var storeScore = localStorage.setItem("highScores", JSON.stringify(highScores));
+    // var score = JSON.parse(localStorage.getItem(highScores));
+
+    function insertHtml() {
+        document.getElementById("highscores").innerHTML = "Player: " + userScore.initials + " Score:" + userScore.score;
+    }
+
+    insertHtml();
 }
 
-var score = JSON.parse(localStorage.getItem(highScores));
 
-function insertHtml() {
-    document.getElementById("highscores").innerHTML = score;
-}
 
 document.getElementById("button1").addEventListener("click", checkAnswer);
 document.getElementById("button2").addEventListener("click", checkAnswer);
