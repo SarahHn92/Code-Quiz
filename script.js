@@ -31,7 +31,7 @@ var questions = [
 var currentQuestion = 0;
 var q =  questions[currentQuestion];
 var secondsLeft = 50;
-var finishedQuestions = currentQuestion >= 4;
+var totalQuestions = questions.length;
 
 
 function startGame() {
@@ -49,15 +49,13 @@ function nextQuestion() {
         document.getElementById("button2").innerHTML = q.choices[1];
         document.getElementById("button3").innerHTML = q.choices[2];
         document.getElementById("button4").innerHTML = q.choices[3];  
-    } else { 
+    } 
+    else { 
         endGame();
     }
-
-    
-
-    
-//compare user choice to answer
-//Depending on answer, show "Correct", and "incorrect"
+    if (currentQuestion >= totalQuestions) {
+        endGame();
+    }
 }
 
 function handleTimer() {
@@ -89,7 +87,8 @@ function checkAnswer(e) {
         document.getElementById("correct").style.visibility = "visible";
         document.getElementById("incorrect").style.visibility ="hidden";
         nextQuestion();
-    } else {
+    } 
+    else {
         // answer is wrong
         currentQuestion++;
         q = questions[currentQuestion];
@@ -97,12 +96,12 @@ function checkAnswer(e) {
         document.getElementById("incorrect").style.visibility ="visible";
         secondsLeft = secondsLeft -10;
         nextQuestion();
-        // nextQuestion();
-    }
     
+    }
 }
 
 function endGame() {
+    handleTimer(clearInterval());
     console.log ("Game over");
     var submit = prompt("Enter your initials to save your score!");
     console.log(submit);
@@ -113,9 +112,7 @@ function endGame() {
     var highScores = [];
     highScores.push(userScore);
     console.log(highScores);
-    
-    //stop timer
-    //store highScores to local storage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
 }
 
@@ -130,3 +127,9 @@ document.getElementById("button4").addEventListener("click", checkAnswer);
 document.getElementById("startTime").addEventListener("click", startGame);
 document.getElementById("correct").style.visibility = "hidden";
 document.getElementById("incorrect").style.visibility = "hidden";
+
+var score = JSON.parse(localStorage.getItem(highScores));
+
+
+document.getElementById("highscores").innerHTML = score;
+// document.getElementById("score").innerHTML = score;
