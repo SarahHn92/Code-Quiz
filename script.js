@@ -61,18 +61,15 @@ function nextQuestion() {
 function handleTimer() {
     console.log ("Timer has started");
     var timer = setInterval(function() {
-        if (secondsLeft > 0){
+        if (secondsLeft > 0) {
             secondsLeft--;
             document.getElementById("timer").innerHTML = "Timer: " + secondsLeft;
         }
         else {
             clearInterval(timer)
-            document.getElementById("timer").innerHTML = "Timer: 0";
+            document.getElementById("timer").innerHTML = "Time is up!";
             endGame();
         } 
-        // if (nextQuestion === undefined) {
-        //     timer.pause();
-        //}
     }, 1000)  
 }  
 
@@ -100,6 +97,8 @@ function checkAnswer(e) {
     }
 }
 
+var highScores = [];
+
 function endGame() {
     handleTimer(clearInterval());
     console.log ("Game over");
@@ -109,16 +108,16 @@ function endGame() {
         initials: submit,
         score:secondsLeft
     } 
-    var highScores = [];
     highScores.push(userScore);
     console.log(highScores);
-    localStorage.setItem("highScores", JSON.stringify(highScores));
-
+    var storeScore = localStorage.setItem("highScores", JSON.stringify(highScores));
 }
 
-//new html page for high score page
-// get highScores from local storage
-//reset game
+var score = JSON.parse(localStorage.getItem(highScores));
+
+function insertHtml() {
+    document.getElementById("highscores").innerHTML = score;
+}
 
 document.getElementById("button1").addEventListener("click", checkAnswer);
 document.getElementById("button2").addEventListener("click", checkAnswer);
@@ -128,8 +127,6 @@ document.getElementById("startTime").addEventListener("click", startGame);
 document.getElementById("correct").style.visibility = "hidden";
 document.getElementById("incorrect").style.visibility = "hidden";
 
-var score = JSON.parse(localStorage.getItem(highScores));
 
 
-document.getElementById("highscores").innerHTML = score;
-// document.getElementById("score").innerHTML = score;
+
