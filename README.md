@@ -6,6 +6,9 @@ The general purpose of the Code Quiz is to answer a short array of general quest
 I learnt quite a bit about ID selection, the importance of naming everything as specifically as possible, and also keeping your code as simple and easy to follow as you can.
 This code is not perfect and I'm not quite satisfied with it's functionality as yet, though I am quite proud of how far I've come. I feel I understand JavaScipt quite a bit more than I did this time last week.
 
+## Application Screenshot
+![image](screenshot.png)
+
 
 ## Usage
 Once on the Quiz landing page, pressing "Start Quiz" will take you to the main quiz page where you will be given the option to "Start Time". There are a series of 5 questions with 4 multiple choice answers each. For each incorrect answer, 10 seconds will be deducted from you final time.
